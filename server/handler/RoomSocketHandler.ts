@@ -62,7 +62,6 @@ class RoomSocketHandler {
   public static leaveRoomRequestListener(socket: SocketIO.Socket) {
     socket.on(LEAVE_ROOM, roomId => {
       socket.leave(roomId);
-      alert("User left")
     });
   }
 

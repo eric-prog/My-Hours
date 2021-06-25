@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import "./index.module.scss"
 
 const Index = () => {
   return (
-    <div className="home-body">
+    <div>
       <Link href={'/join'}>
         <a className="join-link">Join</a>
       </Link>
