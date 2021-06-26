@@ -1,68 +1,68 @@
 import { useEffect, useState, useMemo } from "react";
 import {
-  JOIN_ROOM,
-  LEAVE_ROOM,
-  UPDATE_ROOM_LIST,
+  JOIN_SESSION,
+  LEAVE_SESSION,
+  UPDATE_SESSION_LIST,
   CONNECT_EVENT,
-  LIST_ROOM_DATA_REQUEST,
-  IN_ROOM_USER
-} from "../server/handler/RoomSocketHandler";
-import { IRoom } from "../server/repository/rooms";
+  LIST_SESSION_DATA_REQUEST,
+  IN_SESSION_USER
+} from "../server/handler/SessionSocketHandler";
+import { ISession } from "../server/repository/sessions";
 
-export const useJoinRoom = (socket: SocketIOClient.Socket, roomId: string) => {
+export const useJoinSession = (socket: SocketIOClient.Socket, sessionId: string) => {
   const requestJoin = () => {
-    console.log(`join Room: ${roomId}`);
-    socket.emit(JOIN_ROOM, roomId);
+    console.log(`Join Session: ${sessionId}`);
+    socket.emit(JOIN_SESSION, sessionId);
 
     return () => {
-      console.log(`Leave Room: ${roomId}`);
-      socket.emit(LEAVE_ROOM, roomId);
+      console.log(`Leave Session: ${sessionId}`);
+      socket.emit(LEAVE_SESSION, sessionId);
     };
   };
 
   useEffect(requestJoin, []);
 };
 
-export const useRoomsIo = (socket: SocketIOClient.Socket) => {
-  const [rooms, setRooms] = useState<IRoom[]>([]);
-  const roomData = () => {
-    console.log("userRoomsIo Mount");
-    socket.on(CONNECT_EVENT, (rooms: IRoom[]) => {
-      setRooms(rooms);
+export const useSessionsIo = (socket: SocketIOClient.Socket) => {
+  const [sessions, setSessions] = useState<ISession[]>([]);
+  const sessionData = () => {
+    console.log("userSessionIo Mount");
+    socket.on(CONNECT_EVENT, (sessions: ISession[]) => {
+      setSessions(sessions);
     });
-    socket.on(UPDATE_ROOM_LIST, (rooms: IRoom[]) => {
-      setRooms(rooms);
+    socket.on(UPDATE_SESSION_LIST, (sessions: ISession[]) => {
+      setSessions(sessions);
     });
 
     return () => {
-      console.log("use room leave");
-      socket.off(CONNECT_EVENT).off(UPDATE_ROOM_LIST);
+      console.log("use session leave");
+      socket.off(CONNECT_EVENT).off(UPDATE_SESSION_LIST);
     };
   };
 
-  useEffect(roomData, []);
-  return [rooms];
+  useEffect(sessionData, []);
+  return [sessions];
 };
 
-export const useWaitingRoom = (socket: SocketIOClient.Socket) => {
+export const useWaitingSession = (socket: SocketIOClient.Socket) => {
   const ms = useMemo(() => socket, [socket]);
-  const [rooms, setRooms] = useState<IRoom[]>([]);
-  const roomData = () => {
-    ms.emit(LIST_ROOM_DATA_REQUEST, (rooms: IRoom[]) => {
-      setRooms(rooms);
+  const [sessions, setSessions] = useState<ISession[]>([]);
+  const sessionData = () => {
+    ms.emit(LIST_SESSION_DATA_REQUEST, (sessions: ISession[]) => {
+      setSessions(sessions);
     });
 
-    ms.on(UPDATE_ROOM_LIST, (rooms: IRoom[]) => {
-      setRooms(rooms);
+    ms.on(UPDATE_SESSION_LIST, (sessions: ISession[]) => {
+      setSessions(sessions);
     });
     return () => {
-      ms.off(UPDATE_ROOM_LIST);
+      ms.off(UPDATE_SESSION_LIST);
     };
   };
 
-  useEffect(roomData, []);
+  useEffect(sessionData, []);
 
-  return { rooms };
+  return { sessions: sessions };
 };
 
 export const useJoinNewUser = (socket: SocketIOClient.Socket) => {
@@ -71,13 +71,13 @@ export const useJoinNewUser = (socket: SocketIOClient.Socket) => {
 
   const newUserJoinListener = () => {
     
-    ms.on(IN_ROOM_USER, ({ id }: any) => {
+    ms.on(IN_SESSION_USER, ({ id }: any) => {
       setId(id);
       console.log(`newUserJoinListener: `, id);
     });
 
     return () => {
-      ms.off(IN_ROOM_USER);
+      ms.off(IN_SESSION_USER);
     };
   };
 

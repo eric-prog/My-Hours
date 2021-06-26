@@ -4,7 +4,7 @@ import "./index.module.scss"
 
 const Index = () => {
   return (
-    <div>
+    <div className="container">
       <Link href={'/join'}>
         <a className="join-link">Join</a>
       </Link>

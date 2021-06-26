@@ -1,13 +1,13 @@
 import http from "http";
 import socketIo from "socket.io";
-import RoomSocketHandler from "./handler/RoomSocketHandler";
+import SessionSocketHandler from "./handler/SessionSocketHandler";
 
 let io: SocketIO.Server;
 
 const socket = (server: http.Server) => {
   io = socketIo(server);
 
-  RoomSocketHandler.listen(io);
+  SessionSocketHandler.listen(io);
 };
 
 export default socket;

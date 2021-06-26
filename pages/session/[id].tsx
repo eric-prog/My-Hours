@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import { NextPage } from "next";
-import { useJoinRoom, useJoinNewUser } from "../../utils/hook";
+import { useJoinSession, useJoinNewUser } from "../../utils/hook";
 import { socket } from "../../utils/context";
 import {
-  IN_ROOM_USER,
+  IN_SESSION_USER,
   NEW_MESSAGE,
   SEND_MESSAEGE
-} from "../../server/handler/RoomSocketHandler";
+} from "../../server/handler/SessionSocketHandler";
 import uuid from "uuid/v4";
+import "../index.module.scss"
+
 
 const useNewMessage = () => {
   const [message, setMessage] = useState<{
@@ -37,16 +39,16 @@ type Props = {
   id: any;
 };
 
-const RoomIn: NextPage<Props> = props => {
+const SessionIn: NextPage<Props> = props => {
   const [chats, setChats] = useState<any>([]);
   const [message, setMessage] = useState("");
-  useJoinRoom(socket, `/session/${props.id}`);
+  useJoinSession(socket, `/session/${props.id}`);
   const [newMessage] = useNewMessage();
   const { id } = useJoinNewUser(socket);
   const chatContainerRef = useRef<any>();
 
-  const roomInEventEmitter = () => {
-    socket.emit(IN_ROOM_USER);
+  const sessionInEventEmitter = () => {
+    socket.emit(IN_SESSION_USER);
   };
 
   const newUserJoinHandler = () => {
@@ -56,7 +58,7 @@ const RoomIn: NextPage<Props> = props => {
   const sendMessage = (e: React.KeyboardEvent) => {
     if (e.keyCode === 13 && message.length > 0) {
       socket.emit(SEND_MESSAEGE, {
-        roomId: props.id,
+        sessionId: props.id,
         message
       });
       setMessage("");
@@ -78,40 +80,39 @@ const RoomIn: NextPage<Props> = props => {
     }
   }, [newMessage]);
 
-  useEffect(roomInEventEmitter, []);
+  useEffect(sessionInEventEmitter, []);
 
   useEffect(() => {
     id && newUserJoinHandler();
   }, [id]);
 
   return (
-    <div>
-      <h3>
-        hello world room <small>{props.id}</small>
-      </h3>
-      <div>
-        <ul>
+    <div className="container">
+      <h1 className="title">Session {props.id}</h1>
+      <h2 className="invite-link"><span className="invite">Invite link:</span> http://localhost:3000/session/{props.id}</h2>
+      <div className="text-container">
+        <ul className="text-container">
           {chats.map((chat: any) => {
             if (chat.type === "new") {
               return (
-                <li key={chat.chatId}>{chat.userId} has entered!</li>
+                <li className="li-text user-join" key={chat.chatId}>{chat.userId} has entered!</li>
               );
             } else if (chat.type === "message") {
-              return <li key={chat.chatId}>{chat.message}</li>;
+              return <li className="li-text" key={chat.chatId}>{chat.message}</li>;
             }
           })}
-          <li ref={chatContainerRef}></li>
+          <li className="chat-container" ref={chatContainerRef}></li>
         </ul>
-        <input type="text" onChange={e => setMessage(e.target.value)} value={message} onKeyDown={sendMessage}/>
+        <input className="msg-input" type="text" onChange={e => setMessage(e.target.value)} value={message} onKeyDown={sendMessage}/>
       </div>
     </div>
   );
 };
 
-RoomIn.getInitialProps = async ({ query }) => {
+SessionIn.getInitialProps = async ({ query }) => {
   return {
     id: query.id
   };
 };
 
-export default RoomIn;
+export default SessionIn;

@@ -3,9 +3,9 @@ import { NextPage } from "next";
 
 type Props = {};
 
-const RoomIn: NextPage<Props> = props => {
+const SessionIn: NextPage<Props> = props => {
   console.log(props);
-  return <div>room</div>;
+  return <div>session</div>;
 };
 
-export default RoomIn;
+export default SessionIn;

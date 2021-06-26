@@ -1,3 +1,135 @@
-.join-link {
-    color: red;
+@import url(https://fonts.googleapis.com/css2?family=Archivo&display=swap);
+
+// Font Variables
+$archivo-slab: 'Archivo', sans-serif;
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+.join-link {   
+    margin-top: 20vh;
+    color: white;
+    font-family: $archivo-slab;
+    font-size: 1.5em;
+    text-decoration: none;
+    background-color: rgb(36, 228, 154);
+    padding: 2vh;
+    border-radius: 14px;
+    width: 25vh;
+}
+.session-label {
+    font-family: $archivo-slab;
+    font-size: 2em;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 2vh;
+    padding-right: 5vh;
+    padding-left: 5vh;
+    color: rgb(0, 0, 0);
+    border-radius: 15px;
+}
+.li-link {
+    list-style-type: none;
+    margin: 5vh;
+}
+.chat-container {
+    list-style-type: none;
+    font-family: $archivo-slab;
+}
+.li-text {
+    list-style-type: none;
+    font-family: $archivo-slab;
+    background-color: rgb(194, 246, 231);
+    width: 120px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    border-radius: 10px;
+}
+.text-label {
+    font-family: $archivo-slab;
+    color: rgb(1, 71, 43);
+    font-size: 1.5em;
+    padding-right: 2vh;
+}
+.join-input {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: 3vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
+    justify-content: space-between;
+}
+.inner-container {
+    background-color: rgb(79, 255, 167);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 3vh;
+}
+.title {
+    color: rgb(1, 71, 43);
+    font-size: 2em;
+    font-family: $archivo-slab;
+    margin-bottom: 8vh;
+    margin-top: 15vh;
+}
+.start-btn {
+    margin: 2vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    font-family: $archivo-slab;
+    font-size: 1.5em;
+    border: none;
+    background-color: rgb(181, 255, 218);
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+}
+.text-input {
+    font-size: 1.3em;
+    border-radius: 5px;
+    border: none;
+    padding: 1.8vh;
+}
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    text-align: center;
+}
+.msg-input {
+    font-size: 1em;
+    border-radius: 5px;
+    padding: 1.5vh;
+    border: 2px solid #000
+}
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
+.invite-link {
+    color: rgb(1, 71, 43);
+    font-size: 1.3em;
+    font-family: $archivo-slab;
+    background-color: seashell;
+    border-radius: 30px;
+    padding: 3vh;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+}
+.invite {
+    background-color: #000;
+    color: #fff;
+    padding: 2vh;
+    border-radius: 30px;
+}
+.user-join {
+    background-color: springgreen;
 }
