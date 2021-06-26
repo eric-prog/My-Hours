@@ -1,4 +1,4 @@
-# To run
+# Getting Started
 
 npm install 
 
