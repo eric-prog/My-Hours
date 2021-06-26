@@ -98,9 +98,7 @@ const SessionIn: NextPage<Props> = props => {
                 <li className="li-text user-join" key={chat.chatId}>{chat.userId} has entered!</li>
               );
             } else if (chat.type === "message") {
-              return <li className="li-text" key={chat.chatId}>{chat.message}</li>;
-            } else {
-              <li className="li-text user-join" key={chat.chatId}>{chat.userId} has left!</li>
+              return <li className="li-text" key={chat.chatId}><span className="senderId">{chat.senderId}</span>: {chat.message}</li>;
             }
           })}
           <li className="chat-container" ref={chatContainerRef}></li>

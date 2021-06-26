@@ -22,6 +22,11 @@ $archivo-slab: 'Archivo', sans-serif;
     border-radius: 14px;
     width: 25vh;
 }
+.senderId {
+    background-color: aquamarine;
+    border-radius: 20px;
+    padding: 1vh;
+}
 .session-label {
     font-family: $archivo-slab;
     font-size: 2em;
@@ -45,12 +50,13 @@ $archivo-slab: 'Archivo', sans-serif;
     list-style-type: none;
     font-family: $archivo-slab;
     background-color: rgb(194, 246, 231);
-    width: 120px;
+    width: fit-content;
     margin-top: 1vh;
     margin-bottom: 1vh;
     padding-top: 1vh;
     padding-bottom: 1vh;
     border-radius: 10px;
+    padding-right: 3vh;
 }
 .text-label {
     font-family: $archivo-slab;
@@ -106,6 +112,8 @@ $archivo-slab: 'Archivo', sans-serif;
     text-align: center;
 }
 .msg-input {
+    display: flex;
+    flex-direction: row;
     font-size: 1em;
     border-radius: 5px;
     padding: 1.5vh;
