@@ -111,7 +111,8 @@ const SessionIn: NextPage<Props> = props => {
 
 SessionIn.getInitialProps = async ({ query }) => {
   return {
-    id: query.id
+    id: query.id,
+    Nm: query.sessionNm
   };
 };
 
