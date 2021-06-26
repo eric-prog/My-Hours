@@ -34,9 +34,6 @@ const Join: NextPage<Props> = () => {
           <input
             type="text"
             className="text-input"
-            // onChange={e => setNewRoom(e.target.value)}
-            // value={newRoom}
-            // onKeyDown={createRoomEnterHandler}
           />
         </div>
         <div className="join-input">
@@ -46,7 +43,6 @@ const Join: NextPage<Props> = () => {
             className="text-input"
             onChange={e => setNewSession(e.target.value)}
             value={newSession}
-            onKeyDown={createSessionEnterHandler}
           />
         </div>
         <button className="start-btn" onClick={createSessionEnterHandler}>Start Session</button>
