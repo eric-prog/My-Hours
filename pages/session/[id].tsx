@@ -5,7 +5,7 @@ import { socket } from "../../utils/context";
 import {
   IN_SESSION_USER,
   NEW_MESSAGE,
-  SEND_MESSAEGE
+  SEND_MESSAGE
 } from "../../server/handler/SessionSocketHandler";
 import uuid from "uuid/v4";
 import "../index.module.scss"
@@ -57,7 +57,7 @@ const SessionIn: NextPage<Props> = props => {
 
   const sendMessage = (e: React.KeyboardEvent) => {
     if (e.keyCode === 13 && message.length > 0) {
-      socket.emit(SEND_MESSAEGE, {
+      socket.emit(SEND_MESSAGE, {
         sessionId: props.id,
         message
       });
@@ -99,6 +99,8 @@ const SessionIn: NextPage<Props> = props => {
               );
             } else if (chat.type === "message") {
               return <li className="li-text" key={chat.chatId}>{chat.message}</li>;
+            } else {
+              <li className="li-text user-join" key={chat.chatId}>{chat.userId} has left!</li>
             }
           })}
           <li className="chat-container" ref={chatContainerRef}></li>

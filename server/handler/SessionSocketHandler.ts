@@ -9,7 +9,7 @@ export const LEAVE_SESSION = "session/reave";
 export const UPDATE_SESSION_LIST = "session/update-session-list";
 export const IN_SESSION_USER = "session/in-session-user";
 export const NEW_MESSAGE = "session/new-message";
-export const SEND_MESSAEGE = "session/send-message";
+export const SEND_MESSAGE = "session/send-message";
 
 class SessionSocketHandler {
   private static io: SocketIO.Server;
@@ -70,7 +70,7 @@ class SessionSocketHandler {
       socket.broadcast.emit(IN_SESSION_USER, { id: socket.id });
     });
 
-    socket.on(SEND_MESSAEGE, (message: { sessionId: string; message: string }) => {
+    socket.on(SEND_MESSAGE, (message: { sessionId: string; message: string }) => {
       console.log(`[SERVER] send: ${message.message} to ${message.sessionId}`);
       this.io.emit(NEW_MESSAGE, {
         message: message.message,

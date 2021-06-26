@@ -70,7 +70,6 @@ export const useJoinNewUser = (socket: SocketIOClient.Socket) => {
   const [id, setId] = useState("");
 
   const newUserJoinListener = () => {
-    
     ms.on(IN_SESSION_USER, ({ id }: any) => {
       setId(id);
       console.log(`newUserJoinListener: `, id);
