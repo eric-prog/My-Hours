@@ -46,6 +46,10 @@ $archivo-slab: 'Archivo', sans-serif;
     list-style-type: none;
     font-family: $archivo-slab;
 }
+.msg-title {
+    font-family: $archivo-slab;
+    font-size: 1em;
+}
 .li-text {
     list-style-type: none;
     font-family: $archivo-slab;

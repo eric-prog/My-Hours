@@ -25,6 +25,7 @@ class SessionSocketHandler {
    */
   public static connect() {
     this.io.on("connection", socket => {
+      const message = "User has left the chat."
       socket.emit(CONNECT_EVENT, SessionsRepository.getSessions);
 
       this.createSessionRequestListener(socket);
@@ -32,7 +33,14 @@ class SessionSocketHandler {
       this.leaveSessionRequestListener(socket);
       this.listSessionDataRequestListener(socket);
 
-      socket.on("disconnect", socket.removeAllListeners);
+      socket.on("disconnect", () => {
+        console.log("IN DISCONNECT");
+        this.io.emit(NEW_MESSAGE, {
+          message: message,
+          senderId: socket.id,
+          chatId: uuid()
+        });
+      });
     });
   }
 

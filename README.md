@@ -10,4 +10,5 @@ npm run dev
 <img src="./readme-assets/join-page.png">
 <img src="./readme-assets/all-sessions.png">
 <img src="./readme-assets/session-page.png">
+<img src="./readme-assets/session-user-left.png">
 

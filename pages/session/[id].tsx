@@ -103,6 +103,7 @@ const SessionIn: NextPage<Props> = props => {
           })}
           <li className="chat-container" ref={chatContainerRef}></li>
         </ul>
+        <p className="msg-title">Message</p>
         <input className="msg-input" type="text" onChange={e => setMessage(e.target.value)} value={message} onKeyDown={sendMessage}/>
       </div>
     </div>
