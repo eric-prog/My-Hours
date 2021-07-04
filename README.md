@@ -1,3 +1,12 @@
+# Inspiration
+
+Modelled after https://hours.zone/ 
+
+# Stack 
+
+Frontend: Next.js & Sass
+Backend: Koa, Node.js, & Socket.IO 
+
 # Getting Started
 
 npm install 
