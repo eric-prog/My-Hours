@@ -4,7 +4,7 @@ Modelled after https://hours.zone/
 
 # Stack 
 
-Frontend: Next.js & Sass
+Frontend: Next.js & Sass <br/>
 Backend: Koa, Node.js, & Socket.IO 
 
 # Getting Started
