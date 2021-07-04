@@ -1,19 +1,19 @@
-# Inspiration
+## Inspiration
 
 Modelled after https://hours.zone/ 
 
-# Stack 
+## Stack 
 
 Frontend: Next.js & Sass <br/>
 Backend: Koa, Node.js, & Socket.IO 
 
-# Getting Started
+## Getting Started
 
 npm install 
 
 npm run dev
 
-# Product
+## Product
 
 <img src="./readme-assets/home-page.png">
 <img src="./readme-assets/join-page.png">
